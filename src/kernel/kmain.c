@@ -1,5 +1,9 @@
 #include "defs.h"
-#include "textio.h"
+#include "io.h"
+#include "string.h"
+#include "textio.c"
+
+int kmain();
 
 void kernel()
 {
@@ -8,6 +12,7 @@ void kernel()
 
 int kmain()
 {
-    putc('B');
+    SetTextColor(FG_LIGHTRED | BG_BLACK);
+    puts("Hello world !");
     return 0;
 }
