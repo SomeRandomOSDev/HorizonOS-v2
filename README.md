@@ -1,2 +1,5 @@
 # HorizonOS-v2
- A hobby operating system
+A simple hobby operating system
+
+## TODO
+- [ ] Implement basic memory management
