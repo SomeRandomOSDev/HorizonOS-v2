@@ -17,9 +17,12 @@ stack_bottom:
 stack_top:
 
 section .text
+
+[extern kernel]
 global _start
 _start:
-	; call kernel_main
+[bits 32]
+	call kernel
 
 	cli
   	hlt
