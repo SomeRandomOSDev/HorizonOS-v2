@@ -2,14 +2,19 @@
 A simple hobby operating system
 
 ## TODO
-- [x] Implement basic text output
-- [ ] Add a basic memory manager
+- [ ] Implement basic text output
+    - [x] putc
+    - [x] puts
+    - [ ] printf
 - [ ] Add a GDT
 - [ ] Add an IDT
 - [ ] Implement a parrallel port driver
 - [ ] Implement a serial port driver
+- [ ] Add support for 8086 virtual mode
 - [ ] Implement paging
+- [ ] Add a basic memory manager
 - [ ] Implement multitasking
+- [ ] Use the VESA video modes
 - [ ] Implement a basic ATA driver
 - [ ] Implement the FAT file system
 - [ ] Implement a Sound Blaster 16 driver
