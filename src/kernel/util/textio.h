@@ -48,4 +48,4 @@ void DisableCursor();
 void UpdateCursor();
 
 void putc(char c);
-void puts(char* str);
+void puts(const char* str);

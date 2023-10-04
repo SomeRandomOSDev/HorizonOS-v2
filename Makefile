@@ -2,7 +2,6 @@ bin/kernel.bin: src/kernel/kernelentry.asm clean
 	echo Building HorizonOS...
 	echo
 	nasm -f elf -o "bin/kernelentry.o" "src/kernel/kernelentry.asm"
-	nasm -f elf -o "bin/gdt.o" "src/kernel/gdt/gdt.asm"
 	gcc -Wall -m32 -ffreestanding -fstrength-reduce\
     -finline-functions -fno-pic \
     -mno-red-zone -masm=intel -std=gnu99 -nostdlib -c \

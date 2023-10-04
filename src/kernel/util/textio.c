@@ -48,6 +48,15 @@ void UpdateCursor()
 	outb(0x3d5, (uint8_t) ((text_cursor_pos >> 8) & 0xff));
 }
 
+void ClearScreen(uint8_t color)
+{
+    for(unsigned int  i = 0; i < 80 * 25; i++)
+    {
+        *((uint8_t*)0xb8000 + 2 * i) = ' ';
+        *((uint8_t*)0xb8001 + 2 * i) = color;
+    }
+}
+
 void putc(char c)
 {
     switch(c)
@@ -71,7 +80,7 @@ void putc(char c)
     UpdateCursor();
 }
 
-void puts(char* str)
+void puts(const char* str)
 {
     unsigned int i = 0;
     while(str[i] != 0)

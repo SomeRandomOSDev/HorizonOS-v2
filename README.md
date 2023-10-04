@@ -7,7 +7,8 @@ A simple hobby operating system
     - [x] puts
     - [ ] printf
 - [x] Add a GDT
-- [ ] Add an IDT
+- [x] Add an IDT
+- [ ] Add the 32 fault interrupts in the IDT
 - [ ] Implement a parrallel port driver
 - [ ] Implement a serial port driver
 - [ ] Add support for 8086 virtual mode
