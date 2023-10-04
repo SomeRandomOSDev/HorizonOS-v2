@@ -6,7 +6,7 @@ A simple hobby operating system
     - [x] putc
     - [x] puts
     - [ ] printf
-- [ ] Add a GDT
+- [x] Add a GDT
 - [ ] Add an IDT
 - [ ] Implement a parrallel port driver
 - [ ] Implement a serial port driver

@@ -10,22 +10,23 @@ dd MAGIC
 dd FLAGS
 dd CHECKSUM
 
-section .bss
-align 16
-stack_bottom:
-
-stack_top:
-
 section .text
 
 [extern kernel]
 global _start
 _start:
 [bits 32]
+	push eax
+	push ebx
+
 	call kernel
 
 	cli
   	hlt
 	jmp $
 
-; .size _start, . - _start ; .size _start, $ - _start ?
+; section .bss
+section .data
+; align 16
+times 16384 db 0
+stack_top:

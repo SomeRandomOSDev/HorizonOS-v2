@@ -1,4 +1,11 @@
 ENTRY(_start)
+STARTUP("bin/kernelentry.o")
+
+INPUT
+(
+ 	"bin/kmain.o"
+	"bin/gdt.o"
+)
  
 SECTIONS
 {

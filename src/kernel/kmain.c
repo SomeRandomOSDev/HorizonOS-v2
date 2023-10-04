@@ -3,11 +3,15 @@
 #include "util/memory.h"
 #include "util/string.h"
 #include "util/textio.c"
+#include "util/multiboot.h"
+
+#include "GDT/gdt.h"
 
 int kmain();
 
-void kernel()
+void kernel(struct multiboot_info* multibootInfo, uint32_t magicNumber)
 {
+    SetUpGDT();
     kmain();
 }
 
