@@ -98,5 +98,21 @@ void* malloc(size_t size)
 
 void free(void* ptr)
 {
-    ;
+    uint32_t blockID = ((uint32_t)ptr - FREE_MEMORY_START) / BLOCK_SIZE;
+
+    setBlockStatus(blockID, true, false);
+
+    bool nextBlock = false;
+
+    blockID++;
+
+    while(!nextBlock)
+    {
+        getBlockStatus(blockID, NULL, &nextBlock);
+
+        if(!nextBlock)
+            setBlockStatus(blockID, true, false);
+
+        blockID++;
+    }
 }

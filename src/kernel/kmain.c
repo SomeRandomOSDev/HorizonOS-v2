@@ -35,6 +35,10 @@ int kmain()
     puts(string3);
 
     uint8_t* array = (uint8_t*)malloc(1024 * sizeof(uint8_t));
+    uint8_t* array2 = (uint8_t*)malloc(4096 * sizeof(uint8_t));
+
+    free(array);
+    free(string);
     
     //int x = 1 / 0;
 
