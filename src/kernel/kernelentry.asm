@@ -50,6 +50,6 @@ LoadIDT:
 
 ; section .bss
 section .data
-; align 16
+align 16
 times 16384 db 0
 stack_top:

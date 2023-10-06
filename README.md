@@ -6,6 +6,7 @@ A simple hobby operating system
     - [x] putc
     - [x] puts
     - [ ] printf
+- [x] Create a basic memory manager
 - [x] Add a GDT
 - [x] Add an IDT
 - [ ] Add the 32 fault interrupts in the IDT
@@ -13,7 +14,6 @@ A simple hobby operating system
 - [ ] Implement a serial port driver
 - [ ] Add support for 8086 virtual mode
 - [ ] Implement paging
-- [ ] Add a basic memory manager
 - [ ] Implement multitasking
 - [ ] Use the VESA video modes
 - [ ] Implement a basic ATA driver
