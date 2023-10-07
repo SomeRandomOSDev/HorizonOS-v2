@@ -33,3 +33,8 @@ float roundf(float x)
 {
     return floor(x + 0.5f);
 }
+
+double abs(double x)
+{
+    return (x >= 0 ? x : x * -1);
+}

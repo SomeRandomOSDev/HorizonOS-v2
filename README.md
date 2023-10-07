@@ -5,7 +5,7 @@ A simple hobby operating system
 - [ ] Implement basic text output
     - [x] putc
     - [x] puts
-    - [ ] printf
+    - [x] printf
 - [x] Create a basic memory manager
 - [x] Add a GDT
 - [x] Add an IDT
