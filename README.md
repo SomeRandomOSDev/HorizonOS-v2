@@ -9,8 +9,13 @@ A simple hobby operating system
 - [x] Create a basic memory manager
 - [x] Add a GDT
 - [x] Add an IDT
+- [x] Add the 32 fault interrupts in the IDT
+- [ ] Handle IRQs
+    - [x] Handle the PIT timer
+    - [ ] Handle PS/2 keyboard
+    - [ ] Handle PS/2 mouse
+- [ ] Handle spurious IRQs
 - [ ] Read GRUB's memory map
-- [ ] Add the 32 fault interrupts in the IDT
 - [ ] Implement a parrallel port driver
 - [ ] Implement a serial port driver
 - [ ] Add support for 8086 virtual mode

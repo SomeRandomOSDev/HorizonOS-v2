@@ -47,6 +47,32 @@ ISR_NO_ERROR_CODE 29
 ISR_ERROR_CODE    30
 ISR_NO_ERROR_CODE 31
 
+%macro IRQ_HANDLER 1
+global IRQ%1
+IRQ%1:
+    cli
+    push byte 0
+    push byte (%1 + 32)
+    jmp GeneralInterruptHandler
+%endmacro
+
+IRQ_HANDLER 0
+IRQ_HANDLER 1
+IRQ_HANDLER 2
+IRQ_HANDLER 3
+IRQ_HANDLER 4
+IRQ_HANDLER 5
+IRQ_HANDLER 6
+IRQ_HANDLER 7
+IRQ_HANDLER 8
+IRQ_HANDLER 9
+IRQ_HANDLER 10
+IRQ_HANDLER 11
+IRQ_HANDLER 12
+IRQ_HANDLER 13
+IRQ_HANDLER 14
+IRQ_HANDLER 15
+
 extern InterruptHandler
 GeneralInterruptHandler:
     pusha

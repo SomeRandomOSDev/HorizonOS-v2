@@ -42,7 +42,6 @@ void SetUpGDT()
     GDTSetGate(0, 0, 0, 0, 0);
 
     GDTSetGate(1, 0, 0xffffffff, 0x9a, 0xcf);
-
     GDTSetGate(2, 0, 0xffffffff, 0x92, 0xcf);
 
     LoadGDT();

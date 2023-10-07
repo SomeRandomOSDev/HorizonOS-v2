@@ -1,12 +1,6 @@
-#include "util/defs.h"
-#include "util/io.h"
-#include "util/memory.h"
-#include "util/string.h"
-#include "util/textio.c"
-#include "util/multiboot.h"
+#define PIT_FREQUENCY       100
 
-#include "core/gdt.h"
-#include "core/idt.h"
+#include "includes.h"
 
 int kmain();
 
@@ -15,6 +9,8 @@ void kernel(struct multiboot_info* multibootInfo, uint32_t magicNumber)
     SetTextColor(BG_BLACK | FG_WHITE);
     SetUpGDT();
     SetUpIDT();
+    InitPIC();
+    PITSetFrequency(PIT_FREQUENCY);
     EnableInterrupts();
     InitMemory();
     int returnCode = kmain();
@@ -22,6 +18,7 @@ void kernel(struct multiboot_info* multibootInfo, uint32_t magicNumber)
 }
 
 int kmain()
-{
+{   
+    while(true);
     return 0;
 }

@@ -53,3 +53,8 @@ void outd(uint16_t address, uint32_t dWord)
 		"Nd" (address)
 		);
 }
+
+void io_wait()
+{
+	outb(0x80, 0);
+}

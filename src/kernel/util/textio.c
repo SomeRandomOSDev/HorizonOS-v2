@@ -59,6 +59,7 @@ void ClearScreen(uint8_t color)
 
 void printChar(char c)
 {
+    text_cursor_pos %= 80 * 25;
     switch(c)
     {
     case '\n':

@@ -1,8 +1,5 @@
 #pragma once
 
-#include "../util/string.h"
-#include "../util/defs.h"
-
 void EnableInterrupts()
 {asm("sti");}
 void DisableInterrupts()
@@ -10,7 +7,11 @@ void DisableInterrupts()
 void Halt()
 {DisableInterrupts(); asm("hlt");}
 
-#pragma pack(1)
+#include "../util/string.h"
+#include "../util/defs.h"
+#include "pic.c"
+#include "pit.h"
+
 struct IDTEntry
 {
     uint16_t base_lo;  // 0 - bits 0 - 15
@@ -18,14 +19,13 @@ struct IDTEntry
     uint8_t zero;      // 4
     uint8_t flags;     // 5
     uint16_t base_hi;  // 6 - bits 16 - 31
-};
+} __attribute__((packed));
 
-#pragma pack(1)
 struct IDTptr
 {
     uint16_t limit;
     uint32_t base;
-};
+} __attribute__((packed));
 
 struct Registers
 {
@@ -51,13 +51,14 @@ void CreateIDTEntry(uint8_t id, uint32_t base, uint16_t segment, uint8_t flags)
 
 void kpanic(uint8_t intNb, uint8_t errorCode, const char* errorText)
 {
+    DisableInterrupts();
     ClearScreen(BG_LIGHTBLUE);
     SetCursorPos(4, 2);
     DisableCursor();
     SetTextColor(FG_LIGHTRED | BG_LIGHTBLUE);
     puts("Kernel panic\n\n\t");
     SetTextColor(FG_WHITE | BG_LIGHTBLUE);
-    printf("Interrupt number: %u\n\n\t", intNb);
+    printf("Exception number: %u\n\n\t", intNb);
     printf("Error: %s\n\t", errorText);
     printf("Error code: %u\n\t", errorCode);
     Halt();
@@ -101,12 +102,25 @@ char* errorTexts[32] =
 
 void InterruptHandler(struct Registers* registers)
 {
-    if(registers->interruptNumber <= 31)
+    if(registers->interruptNumber < 32)
     {
         kpanic(registers->interruptNumber, registers->errorCode, errorTexts[registers->interruptNumber]);
         while(true);
     }
-    while(true);
+    else if(registers->interruptNumber < 32 + 16)
+    {
+        uint8_t irqNumber = registers->interruptNumber - 32;
+        switch (irqNumber)
+        {
+        case 0:
+            globalTimer += 1000 / PIT_FREQUENCY;
+            break;
+
+        default:
+            break;
+        }
+        PICSendEOI(irqNumber);
+    }
 }
 
 extern void ISR0();
@@ -141,6 +155,23 @@ extern void ISR28();
 extern void ISR29();
 extern void ISR30();
 extern void ISR31();
+
+extern void IRQ0();
+extern void IRQ1();
+extern void IRQ2();
+extern void IRQ3();
+extern void IRQ4();
+extern void IRQ5();
+extern void IRQ6();
+extern void IRQ7();
+extern void IRQ8();
+extern void IRQ9();
+extern void IRQ10();
+extern void IRQ11();
+extern void IRQ12();
+extern void IRQ13();
+extern void IRQ14();
+extern void IRQ15();
 
 void SetUpIDT()
 {
@@ -181,6 +212,23 @@ void SetUpIDT()
     CreateIDTEntry(29, (uint32_t)&ISR29, 0x08, 0x8e);
     CreateIDTEntry(30, (uint32_t)&ISR30, 0x08, 0x8e);
     CreateIDTEntry(31, (uint32_t)&ISR31, 0x08, 0x8e);
+
+    CreateIDTEntry(32, (uint32_t)&IRQ0, 0x08, 0x8e);
+	CreateIDTEntry(33, (uint32_t)&IRQ1, 0x08, 0x8e);
+	CreateIDTEntry(34, (uint32_t)&IRQ2, 0x08, 0x8e);
+	CreateIDTEntry(35, (uint32_t)&IRQ3, 0x08, 0x8e);
+	CreateIDTEntry(36, (uint32_t)&IRQ4, 0x08, 0x8e);
+	CreateIDTEntry(37, (uint32_t)&IRQ5, 0x08, 0x8e);
+	CreateIDTEntry(38, (uint32_t)&IRQ6, 0x08, 0x8e);
+	CreateIDTEntry(39, (uint32_t)&IRQ7, 0x08, 0x8e);
+	CreateIDTEntry(40, (uint32_t)&IRQ8, 0x08, 0x8e);
+	CreateIDTEntry(41, (uint32_t)&IRQ9, 0x08, 0x8e);
+	CreateIDTEntry(42, (uint32_t)&IRQ10, 0x08, 0x8e);
+	CreateIDTEntry(43, (uint32_t)&IRQ11, 0x08, 0x8e);
+	CreateIDTEntry(44, (uint32_t)&IRQ12, 0x08, 0x8e);
+	CreateIDTEntry(45, (uint32_t)&IRQ13, 0x08, 0x8e);
+	CreateIDTEntry(46, (uint32_t)&IRQ14, 0x08, 0x8e);
+	CreateIDTEntry(47, (uint32_t)&IRQ15, 0x08, 0x8e);
 
     LoadIDT();
 }
