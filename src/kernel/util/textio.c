@@ -57,7 +57,7 @@ void ClearScreen(uint8_t color)
     }
 }
 
-void putc(char c)
+void printChar(char c)
 {
     switch(c)
     {
@@ -78,6 +78,11 @@ void putc(char c)
     }
 
     text_cursor_pos %= 80 * 25;
+}
+
+void putc(char c)
+{
+    printChar(c);
 
     UpdateCursor();
 }
@@ -87,9 +92,11 @@ void puts(const char* str)
     unsigned int i = 0;
     while(str[i] != 0)
     {
-        putc(str[i]);
+        printChar(str[i]);
         i++;
     }
+
+    UpdateCursor();
 }
 
 char* hex = "0123456789abcdef";

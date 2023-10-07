@@ -58,9 +58,9 @@ void printMemState(uint32_t block)
         bool isFree, firstBlock;
         getBlockStatus(block + i, &isFree, &firstBlock);
         if(isFree)
-            SetTextColor(BG_LIGHTBLUE);
+            SetTextColor(BG_LIGHTGREEN);
         else
-            SetTextColor(BG_BLUE);
+            SetTextColor(BG_LIGHTBLUE);
 
         if(firstBlock)
             putc('#');

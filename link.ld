@@ -4,6 +4,7 @@ STARTUP("bin/kernelentry.o")
 INPUT
 (
  	"bin/kmain.o"
+	"bin/idt.o"
 )
  
 SECTIONS

@@ -23,6 +23,5 @@ void kernel(struct multiboot_info* multibootInfo, uint32_t magicNumber)
 
 int kmain()
 {
-    printf("this is a formated string %i %s %u %c 0x%x 0x%X", -982, "arandomstring", 325, 'c', 0x89ab00, 0x0123abcd);
     return 0;
 }
