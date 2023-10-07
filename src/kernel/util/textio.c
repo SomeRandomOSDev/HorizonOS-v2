@@ -77,6 +77,8 @@ void putc(char c)
         text_cursor_pos++;
     }
 
+    text_cursor_pos %= 80 * 25;
+
     UpdateCursor();
 }
 

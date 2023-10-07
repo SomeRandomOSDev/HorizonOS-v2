@@ -51,8 +51,9 @@ void getBlockStatus(uint32_t block, bool* free, bool* firstBlock)
 
 void printMemState(uint32_t block)
 {
+    DisableCursor();
     SetCursorPos(0, 0);
-    for(uint32_t i = 0; i < 80 * 25; i++)
+    for(uint32_t i = 0; i < 80 * 25 && i < (NUM_BLOCKS / 8); i++)
     {
         bool isFree, firstBlock;
         getBlockStatus(block + i, &isFree, &firstBlock);
@@ -102,15 +103,15 @@ void free(void* ptr)
 
     setBlockStatus(blockID, true, false);
 
-    bool nextBlock = false;
+    bool nextBlock = false, isFree = false;
 
     blockID++;
 
-    while(!nextBlock)
+    while((!nextBlock) && (!isFree))
     {
-        getBlockStatus(blockID, NULL, &nextBlock);
+        getBlockStatus(blockID, &isFree, &nextBlock);
 
-        if(!nextBlock)
+        if((!nextBlock) && (!isFree))
             setBlockStatus(blockID, true, false);
 
         blockID++;

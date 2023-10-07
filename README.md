@@ -9,6 +9,7 @@ A simple hobby operating system
 - [x] Create a basic memory manager
 - [x] Add a GDT
 - [x] Add an IDT
+- [ ] Read GRUB's memory map
 - [ ] Add the 32 fault interrupts in the IDT
 - [ ] Implement a parrallel port driver
 - [ ] Implement a serial port driver
