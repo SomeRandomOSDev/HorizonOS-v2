@@ -2,7 +2,7 @@
 A simple hobby operating system
 
 ## TODO
-- [ ] Implement basic text output
+- [x] Implement basic text output
     - [x] putc
     - [x] puts
     - [x] printf
@@ -10,7 +10,7 @@ A simple hobby operating system
 - [x] Add a GDT
 - [x] Add an IDT
 - [x] Add the 32 fault interrupts in the IDT
-- [ ] Handle IRQs
+- [x] Handle IRQs
     - [x] Handle the PIT timer
     - [x] Handle PS/2 keyboard
     - [ ] Handle PS/2 mouse
