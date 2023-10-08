@@ -1,5 +1,3 @@
-#define PIT_FREQUENCY       100
-
 #include "includes.h"
 
 int kmain();
@@ -10,7 +8,11 @@ void kernel(struct multiboot_info* multibootInfo, uint32_t magicNumber)
     SetUpGDT();
     SetUpIDT();
     InitPIC();
-    PITSetFrequency(PIT_FREQUENCY);
+    PITSetFrequency(100);
+    kb_layout = KB_AZERTY;
+    PS2KeyboardInit();
+    PS2KBResetKeyboard();
+    PS2KBSetScancodeSet(2);
     EnableInterrupts();
     InitMemory();
     int returnCode = kmain();
@@ -19,6 +21,13 @@ void kernel(struct multiboot_info* multibootInfo, uint32_t magicNumber)
 
 int kmain()
 {   
-    while(true);
+    // while(true)
+    // {
+    //     if(PS2KBGetKeyState('a'))
+    //         puts("a\r");
+    //     else
+    //         puts(" \r");
+    // }
+    PS2KeyboardReadTextInput();
     return 0;
 }

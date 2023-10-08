@@ -12,9 +12,10 @@ A simple hobby operating system
 - [x] Add the 32 fault interrupts in the IDT
 - [ ] Handle IRQs
     - [x] Handle the PIT timer
-    - [ ] Handle PS/2 keyboard
+    - [x] Handle PS/2 keyboard
     - [ ] Handle PS/2 mouse
 - [ ] Handle spurious IRQs
+- [ ] Add PCI bus scanning
 - [ ] Read GRUB's memory map
 - [ ] Implement a parrallel port driver
 - [ ] Implement a serial port driver

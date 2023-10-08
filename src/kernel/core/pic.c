@@ -4,55 +4,21 @@
 
 void InitPIC()
 {
-    //PICRemap(32, 32 + 8);
 	PICRemap();
-	//PICSetMask(0xfffe);
 }
-
-// void PICRemap(int offset1, int offset2)
-// {
-// 	uint8_t a1, a2;
- 
-// 	a1 = inb(PIC1_DATA);
-// 	io_wait();
-// 	a2 = inb(PIC2_DATA);
- 
-// 	outb(PIC1_CMD, ICW1_INIT | ICW1_ICW4);
-// 	io_wait();
-// 	outb(PIC2_CMD, ICW1_INIT | ICW1_ICW4);
-// 	io_wait();
-// 	outb(PIC1_DATA, offset1);
-// 	io_wait();
-// 	outb(PIC2_DATA, offset2);
-// 	io_wait();
-// 	outb(PIC1_DATA, 4);
-// 	io_wait();
-// 	outb(PIC2_DATA, 2);
-// 	io_wait();
- 
-// 	outb(PIC1_DATA, ICW4_8086);
-// 	io_wait();
-// 	outb(PIC2_DATA, ICW4_8086);
-// 	io_wait();
- 
-// 	outb(PIC1_DATA, a1);
-// 	io_wait();
-// 	outb(PIC2_DATA, a2);
-// 	io_wait();
-// }
 
 void PICRemap()
 {
-    outb(0x20, 0x11);
-    outb(0xa0, 0x11);
-    outb(0x21, 0x20);
-    outb(0xa1, 0x28);
-    outb(0x21, 0x04);
-    outb(0xa1, 0x02);
-    outb(0x21, 0x01);
-    outb(0xa1, 0x01);
-    outb(0x21, 0x0);
-    outb(0xa1, 0x0);
+    outb(PIC1_CMD, 0x11);
+    outb(PIC2_CMD, 0x11);
+    outb(PIC1_DATA, 0x20);
+    outb(PIC2_DATA, 0x28);
+    outb(PIC1_DATA, 0x04);
+    outb(PIC2_DATA, 0x02);
+    outb(PIC1_DATA, 0x01);
+    outb(PIC2_DATA, 0x01);
+    outb(PIC1_DATA, 0x0);
+    outb(PIC2_DATA, 0x0);
 }
 
 void PICDisable()

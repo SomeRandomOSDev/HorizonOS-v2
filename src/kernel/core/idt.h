@@ -11,6 +11,7 @@ void Halt()
 #include "../util/defs.h"
 #include "pic.c"
 #include "pit.h"
+#include "PS2/keyboard.h"
 
 struct IDTEntry
 {
@@ -113,7 +114,11 @@ void InterruptHandler(struct Registers* registers)
         switch (irqNumber)
         {
         case 0:
-            globalTimer += 1000 / PIT_FREQUENCY;
+            TimerHandler();
+            break;
+
+        case 1:
+            PS2KeyboardHandler();
             break;
 
         default:

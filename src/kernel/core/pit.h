@@ -7,6 +7,11 @@
 
 uint32_t globalTimer = 0; // 1/100 seconds
 
+void TimerHandler()
+{
+    globalTimer += 1;
+}
+
 void PITSetFrequency(uint32_t frequency)
 {
     uint32_t divisor = 1193180 / frequency;
@@ -16,4 +21,11 @@ void PITSetFrequency(uint32_t frequency)
     io_wait();
     outb(PIT_CHANNEL_0_DATA, divisor >> 8);   
     io_wait(); 
+}
+
+void Sleep(float seconds)
+{
+    uint32_t targetTimer = globalTimer + (seconds * 100);
+
+    while(targetTimer > globalTimer);
 }
