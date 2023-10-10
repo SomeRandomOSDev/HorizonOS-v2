@@ -8,10 +8,9 @@ void Halt()
 {DisableInterrupts(); asm("hlt");}
 
 #include "../util/string.h"
-#include "../util/defs.h"
 #include "pic.c"
 #include "pit.h"
-#include "PS2/keyboard.h"
+#include "PS2/keyboard.c"
 
 struct IDTEntry
 {

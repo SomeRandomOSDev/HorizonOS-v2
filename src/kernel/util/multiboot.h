@@ -270,6 +270,20 @@ struct multiboot_apm_info
   multiboot_uint16_t dseg_len;
 };
 
+
+// //https://wiki.osdev.org/Detecting_Memory_(x86)#Getting_a_GRUB_Memory_Map
+// typedef struct multiboot_memory_map {
+// 	unsigned int size;
+// 	unsigned int base_addr_low,base_addr_high;
+// // You can also use: unsigned long long int base_addr; if supported.
+// 	unsigned int length_low,length_high;
+// // You can also use: unsigned long long int length; if supported.
+// 	unsigned int type;
+// } multiboot_memory_map_t;
+ 
+// // this is really an entry, not the entire map.
+// typedef multiboot_memory_map_t mmap_entry_t;
+
 #endif /* ! ASM_FILE */
 
 #endif /* ! MULTIBOOT_HEADER */

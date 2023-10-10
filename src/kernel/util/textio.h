@@ -46,6 +46,8 @@ uint16_t GetCursorPos();
 void EnableCursor(uint8_t topScanLine, uint8_t lowScanLine);
 void DisableCursor();
 void UpdateCursor();
+void ClearScreen(uint8_t color);
 
 void putc(char c);
 void puts(const char* str);
+void printf(const char* fmt, ...);

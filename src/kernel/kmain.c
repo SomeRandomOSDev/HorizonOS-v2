@@ -23,11 +23,15 @@ int kmain()
 {   
     // while(true)
     // {
-    //     if(PS2KBGetKeyState('a'))
-    //         puts("a\r");
+    //     if(PS2KBGetKeyState(KB_UP))
+    //         puts("UP ARROW PRESSED !!!!!!!!!!!!!!\r");
     //     else
-    //         puts(" \r");
+    //         puts("                                          \r");
     // }
-    PS2KeyboardReadTextInput();
+    char* string = PS2KeyboardReadTextInput();
+    printf("You typed : %s\n", string);
+    free(string);
+    //printMemState(0);
+    memDump(FREE_MEMORY_START);
     return 0;
 }

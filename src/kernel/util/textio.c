@@ -1,6 +1,7 @@
 #pragma once
 
 #include "textio.h"
+#include "memory.h"
 
 void SetTextColor(uint8_t color)
 {
@@ -62,6 +63,8 @@ void printChar(char c)
     text_cursor_pos %= 80 * 25;
     switch(c)
     {
+    case 0:
+        break;
     case '\n':
         text_cursor_pos += 80;
     case '\r':
@@ -70,13 +73,22 @@ void printChar(char c)
         break;
     case '\b':
         text_cursor_pos--;
+        // if((*((char*)0xb8000 + 2 * text_cursor_pos)) == 255)
+        //     text_cursor_pos -= (TAB_LENGTH - 1);
         printChar(' ');
         text_cursor_pos--;
         break;
-    // case '\t':
-    //     for(unsigned int i = 0; i < TAB_LENGTH; i++)
-    //         putc(' ');
-    //     break;
+    case 127:
+        // printChar(' ');
+        // text_cursor_pos--;
+        break;
+    case 27:
+        break;
+    case '\t':
+        // for(unsigned int i = 0; i < TAB_LENGTH; i++)
+        //     printChar(255);
+        printChar(' ');
+        break;
     default:
         *((char*)0xb8000 + 2 * text_cursor_pos) = c;
         *((char*)0xb8001 + 2 * text_cursor_pos) = text_color;
