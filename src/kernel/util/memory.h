@@ -75,7 +75,7 @@ uint32_t SwitchEndian32(uint32_t nb)
     return ((nb>> 24) & 0xff) | ((nb << 8) & 0xff0000) | ((nb >> 8) & 0xff00) | ((nb << 24) & 0xff000000);
 }
 
-void memDump(uint32_t address)
+void memDump(void* address)
 {
     uint32_t* ptr = (uint32_t*)address;
 
@@ -86,10 +86,11 @@ void memDump(uint32_t address)
 
     for(uint8_t i = 0; i < 25; i++)
     {
-        printf("%x %x %x %x %x %x %x %x\n", 
+        printf("0x%x : %x%x %x%x %x%x %x%x", (uint32_t)ptr,
 SwitchEndian32(ptr[0]), SwitchEndian32(ptr[1]), SwitchEndian32(ptr[2]), SwitchEndian32(ptr[3]), 
 SwitchEndian32(ptr[4]), SwitchEndian32(ptr[5]), SwitchEndian32(ptr[6]), SwitchEndian32(ptr[7]));
         ptr += 8;
+        //ptr = (uint32_t*)(address + 8 * i);
     }
 
     while(true);

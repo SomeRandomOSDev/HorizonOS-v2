@@ -14,7 +14,7 @@ A simple hobby operating system
     - [x] Handle the PIT timer
     - [x] Handle PS/2 keyboard
     - [ ] Handle PS/2 mouse
-- [ ] Handle spurious IRQs
+- [x] Handle spurious IRQs
 - [ ] Add PCI bus scanning
 - [ ] Add PRNGs
 - [ ] Read GRUB's memory map

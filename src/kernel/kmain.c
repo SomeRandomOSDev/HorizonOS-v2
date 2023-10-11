@@ -28,10 +28,15 @@ int kmain()
     //     else
     //         puts("                                          \r");
     // }
+    printf("Enter anything : ");
     char* string = PS2KeyboardReadTextInput();
     printf("You typed : %s\n", string);
     free(string);
-    //printMemState(0);
-    memDump(FREE_MEMORY_START);
+    
+    while(true)
+    {
+        if(PS2KBGetKeyState(KB_LCTRL) && PS2KBGetKeyState('d'))
+            memDump(string);
+    }
     return 0;
 }

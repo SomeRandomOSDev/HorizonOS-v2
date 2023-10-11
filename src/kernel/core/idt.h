@@ -110,6 +110,14 @@ void InterruptHandler(struct Registers* registers)
     else if(registers->interruptNumber < 32 + 16)
     {
         uint8_t irqNumber = registers->interruptNumber - 32;
+        if(irqNumber == 7 && !(PICGetISR() >> 7))
+            return;
+        if(irqNumber == 15 && !(PICGetISR() >> 15))
+        {
+            outb(PIC1_CMD, PIC_EOI);
+	        io_wait();
+            return;
+        }
         switch (irqNumber)
         {
         case 0:

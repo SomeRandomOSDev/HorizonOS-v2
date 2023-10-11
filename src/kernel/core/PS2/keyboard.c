@@ -247,8 +247,6 @@ void PS2KeyboardHandler()
             kb_text_key_extended = kb_extendedScancode;
             kb_text_key_pressed = true;
         }
-
-        //printf("Scancode : 0x%x %u\r", scancode, kb_extendedScancode);
     }
 
     kb_extendedScancode = false;
