@@ -12,3 +12,5 @@
 #include "core/gdt.h"
 #include "core/idt.h"
 #include "core/pic.c"
+
+#include "core/pci.h"

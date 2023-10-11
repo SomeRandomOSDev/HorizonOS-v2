@@ -15,7 +15,7 @@ A simple hobby operating system
     - [x] Handle PS/2 keyboard
     - [ ] Handle PS/2 mouse
 - [x] Handle spurious IRQs
-- [ ] Add PCI bus scanning
+- [x] Add PCI bus scanning
 - [ ] Add PRNGs
 - [ ] Read GRUB's memory map
 - [ ] Implement a parrallel port driver
