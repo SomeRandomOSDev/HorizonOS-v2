@@ -5,6 +5,7 @@ INPUT
 (
  	"bin/kmain.o"
 	"bin/idt.o"
+	"bin/paging.o"
 )
  
 SECTIONS

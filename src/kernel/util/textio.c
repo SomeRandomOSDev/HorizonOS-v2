@@ -85,14 +85,20 @@ void printChar(char c)
     case 27:
         break;
     case '\t':
-        // for(unsigned int i = 0; i < TAB_LENGTH; i++)
-        //     printChar(255);
-        printChar(' ');
+        for(unsigned int i = 0; i < TAB_LENGTH; i++)
+            printChar(' ');
         break;
     default:
         *((char*)0xb8000 + 2 * text_cursor_pos) = c;
         *((char*)0xb8001 + 2 * text_cursor_pos) = text_color;
         text_cursor_pos++;
+    }
+
+    if(text_cursor_pos / 80 == 25)
+    {
+        memcpy((char*)0xb8000, (char*)0xb8000 + 2 * 80, 2 * 25 * 80);
+        text_cursor_pos -= 80;
+        UpdateCursor();
     }
 
     text_cursor_pos %= 80 * 25;

@@ -84,13 +84,12 @@ void memDump(void* address)
     DisableCursor();
     SetCursorPos(0, 0);
 
-    for(uint8_t i = 0; i < 25; i++)
+    for(uint8_t i = 0; i < 24; i++)
     {
         printf("0x%x : %x%x %x%x %x%x %x%x", (uint32_t)ptr,
 SwitchEndian32(ptr[0]), SwitchEndian32(ptr[1]), SwitchEndian32(ptr[2]), SwitchEndian32(ptr[3]), 
 SwitchEndian32(ptr[4]), SwitchEndian32(ptr[5]), SwitchEndian32(ptr[6]), SwitchEndian32(ptr[7]));
         ptr += 8;
-        //ptr = (uint32_t*)(address + 8 * i);
     }
 
     while(true);

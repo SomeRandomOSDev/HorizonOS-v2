@@ -1,5 +1,7 @@
 #pragma once
 
+#include "paging.h"
+
 void EnableInterrupts()
 {asm("sti");}
 void DisableInterrupts()
@@ -51,6 +53,7 @@ void CreateIDTEntry(uint8_t id, uint32_t base, uint16_t segment, uint8_t flags)
 
 void kpanic(uint8_t intNb, uint8_t errorCode, const char* errorText)
 {
+    DisablePaging();
     DisableInterrupts();
     ClearScreen(BG_LIGHTBLUE);
     SetCursorPos(4, 2);
@@ -60,7 +63,8 @@ void kpanic(uint8_t intNb, uint8_t errorCode, const char* errorText)
     SetTextColor(FG_WHITE | BG_LIGHTBLUE);
     printf("Exception number: %u\n\n\t", intNb);
     printf("Error: %s\n\t", errorText);
-    printf("Error code: %u\n\t", errorCode);
+    printf("Error code: 0x%x\n\t", errorCode);
+    printf("cr2: 0x%x\n\t", GetCR2());
     Halt();
 }
 

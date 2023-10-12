@@ -38,3 +38,15 @@ double abs(double x)
 {
     return (x < 0 ? x * -1 : x);
 }
+
+float absf(float x)
+{
+    return (x < 0 ? x * -1 : x);
+}
+
+double fmod(double x, double y)
+{
+    while(x >= y)
+        x -= y;
+    return x;
+}

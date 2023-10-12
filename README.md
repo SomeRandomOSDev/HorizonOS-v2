@@ -16,15 +16,14 @@ A simple hobby operating system
     - [ ] Handle PS/2 mouse
 - [x] Handle spurious IRQs
 - [x] Add PCI bus scanning
-- [ ] Add PRNGs
-- [ ] Read GRUB's memory map
+- [x] Add PRNGs
+- [x] Implement paging
+- [ ] Implement multitasking
+- [ ] Use the VESA video modes
 - [ ] Implement a parrallel port driver
 - [ ] Implement a serial port driver
-- [ ] Add support for 8086 virtual mode
-- [ ] Use the VESA video modes
-- [ ] Implement paging
-- [ ] Implement multitasking
 - [ ] Implement a basic ATA driver
 - [ ] Implement the FAT file system
+- [ ] Implement symmetric multiprocessing
 - [ ] Implement a Sound Blaster 16 driver
 - [ ] Add a USB driver

@@ -8,9 +8,11 @@
 #include "util/string.h"
 #include "util/textio.c"
 #include "util/multiboot.h"
+#include "util/prng.h"
 
 #include "core/gdt.h"
 #include "core/idt.h"
 #include "core/pic.c"
+#include "core/paging.h"
 
 #include "core/pci.h"
