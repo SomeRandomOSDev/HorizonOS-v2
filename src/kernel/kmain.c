@@ -6,11 +6,14 @@ void kernel(struct multiboot_info* multibootInfo, uint32_t magicNumber)
 {
     SetTextColor(BG_BLACK | FG_WHITE);
 
-    InitMemory();
+    InitMemory();    
 
-    printf("Setting up GDT...\n");
+    printf("Initializing paging...\n");
+    InitPageDirectory();
+
+    printf("Setting up the GDT...\n");
     SetUpGDT();
-    printf("Setting up IDT...\n");
+    printf("Setting up the IDT...\n");
     SetUpIDT();
     printf("Initializing the PIC and the IRQs...\n\n");
     InitPIC();
@@ -27,8 +30,6 @@ void kernel(struct multiboot_info* multibootInfo, uint32_t magicNumber)
 
 	printf("Scanning PCI Buses...\n\n");
 	printf("\n%u devices found.\n\n", PCIScanBuses());
-
-    InitPageDirectory();
 
     int returnCode = kmain();
     printf("\nkmain stoped with return code %i", returnCode);

@@ -187,13 +187,10 @@ char* PS2KeyboardReadTextInput()
             uint16_t key = PS2KBGetTextKey();
             if((!(key == '\b' && cursor_start_pos == text_cursor_pos)))
             {
-                if(key != '\b' && key != KB_DELETE && size < 64 && key != '\t')
+                if(key != '\b' && key != '\n' && key != '\t' && key != KB_DELETE && size < 64)
                 {
-                    if(key != '\n')
-                    {
-                        string[size] = key;
-                        size++;
-                    }
+                    string[size] = key;
+                    size++;
                     putc(key);
                 }
                 else if(key == '\b')
@@ -206,6 +203,8 @@ char* PS2KeyboardReadTextInput()
     }
 
     string[size] = '\0';
+
+    putc('\n');
 
     return string;
 }
