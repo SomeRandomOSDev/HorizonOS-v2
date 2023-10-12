@@ -9,12 +9,12 @@ A simple hobby operating system
 - [x] Create a basic memory manager
 - [x] Add a GDT
 - [x] Add an IDT
-- [x] Add the 32 fault interrupts in the IDT
+- [x] Add the 32 exceptions in the IDT
 - [x] Handle IRQs
     - [x] Handle the PIT timer
     - [x] Handle PS/2 keyboard
     - [ ] Handle PS/2 mouse
-- [x] Handle spurious IRQs
+    - [x] Handle spurious IRQs
 - [x] Add PCI bus scanning
 - [x] Add PRNGs
 - [x] Implement paging
